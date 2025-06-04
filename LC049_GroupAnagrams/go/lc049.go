@@ -1,7 +1,7 @@
 package lc049
 
 func groupAnagrams(strs []string) [][]string {
-	smap := make(map[[26]int][]string)
+	smap := make(map[[26]int][]string, len(strs))
 
 	for _, s := range strs {
 		freq := [26]int{}
