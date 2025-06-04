@@ -5,17 +5,13 @@ func isAnagram(s string, t string) bool {
 		return false
 	}
 
-	count := make(map[rune]int)
+	freqS := [26]int{}
+	freqT := [26]int{}
+
 	for i, r := range s {
-		count[r]++
-		count[rune(t[i])]--
+		freqS[r-'a']++
+		freqT[t[i]-'a']++
 	}
 
-	for _, v := range count {
-		if v != 0 {
-			return false
-		}
-	}
-
-	return true
+	return freqS == freqT
 }
