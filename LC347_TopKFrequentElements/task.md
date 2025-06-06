@@ -5,11 +5,12 @@ Given an integer array nums and an integer k, return the k most frequent element
 
 # Approach
 ```
-1. We can use a hash map to count where the key is the element and the value is the counter.
+1. We store the values in a map as the key and the frequency as the value of this map. After that, we use a bucket sort to arrange the elements.
+2. Using a bucket list, we use the position of the array to store the counter, ie, the position 9 has all the elements that have 9 occurrences.
 ```
 
 ## Time complexity
-O(n) for the first part
+O(n) to fill the map, O(m) to fill the frequency array and O(k) to fill the answer array. O(n+m+k) => O(n)
 
 ## Space complexity
-O(m) for the first part, where m <= n.
+O(m) to fill the map, O(n) for the bucket array, O(k) to fill the answer array. O(n+m+k) => O(n)

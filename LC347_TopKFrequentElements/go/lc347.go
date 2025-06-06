@@ -1,23 +1,27 @@
 package lc347
 
 func topKFrequent(nums []int, k int) []int {
-	freq := make(map[int]int)
+	count := make(map[int]int)
 
-	for _, v := range nums {
-		freq[v]++
+	for _, v := range nums { // time: O(n), space: O(m)
+		count[v]++
 	}
 
-	topE := make([]int, k)
-	topF := make([]int, k)
-	for s, v := range freq {
-		for count := 0; count < k; count++ {
-			if topF[count] < v {
-				topF[count] = v
-				topE[count] = s
-				break
+	freq := make([][]int, len(nums)) // the freq bucket arrays has the length of nums
+	// because we can have all elements the same.
+	for num, cnt := range count { // time: O(m), space O(n)
+		freq[cnt-1] = append(freq[cnt-1], num)
+	}
+
+	res := make([]int, 0, k)
+	for i := len(nums) - 1; i >= 0; i-- {
+		for _, num := range freq[i] {
+			res = append(res, num)
+			if len(res) == k {
+				return res
 			}
 		}
 	}
 
-	return topE
+	return res
 }
